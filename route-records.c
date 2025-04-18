@@ -10,9 +10,25 @@
 
     Returns: The pointer to dynamically allocated array
 */
-RouteRecord* createRecords ( FILE* fileIn )
+RouteRecord* createRecords ( FILE* fileIn ) // WIP: delete all inline comments when done
 {
+    //arrayPtr = {someArray};
 
+    fileIn = fopen("data-2024.csv", "r");
+    
+    for ( i = 0; i < ; i++ ) // reads line by line discounting header
+    {
+
+    }
+
+    if ( file == NULL ) // empty file handling
+    {
+        printf( "Error!\n" );
+        return 1;
+    }
+
+    fclose(file);
+    //return arrayPtr;
 }
 
 /*
