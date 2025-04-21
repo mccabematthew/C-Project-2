@@ -46,8 +46,6 @@ int fillRecords ( RouteRecord* r, FILE* filein )
 
 }
 
-/*
-
 int findAirlineRoute(RouteRecord* r, int length, const char* origin,
     const char* destination, const char* airline, int curIdx) {
 
