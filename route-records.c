@@ -48,25 +48,22 @@ int fillRecords ( RouteRecord* r, FILE* filein )
 
 }
 
-/*
-    Function: findAirlineRoute
-    -------------------
-    Description: Recursive function that finds a record in RouteRecord array with same origin
-                 and destination airport codes and airline.
+int findAirlineRoute(RouteRecord* r, int length, const char* origin,
+    const char* destination, const char* airline, int curIdx) {
 
-        r: Array pointer for the dynamically allocated array
-        length: Route record length
-        origin: The airport code of origin
-        destination: The airport destination code
-        airline: The airline code
-        curIdx: The current index within array
-        
-    Returns: Either index number in which three strings appear in the array or -1
-             if it cannot find these three strings in the same struct object.
-*/
-int findAirlineRoute (RouteRecord* r, int length, const char* 
-    origin, const char* destination, const char* airline, int curIdx  )
-{
+if (curIdx >= length) {
+    return -1;
+}
+
+if (strcmp(r[curIdx].origin, origin) == 0 &&
+strcmp(r[curIdx].destination, destination) == 0 &&
+strcmp(r[curIdx].airline, airline) == 0) {
+    return curIdx;
+}
+
+else {
+    return findAirlineRoute(r, length, origin, destination, airline, curIdx + 1);
+}
 
 }
 
