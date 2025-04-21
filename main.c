@@ -5,6 +5,12 @@
 int main( int argc, char *argv[] )
 {
     /* 1. Declare variables here */
+    FILE *filePtr = fopen( "data-2024.csv", "r" );
+    if ( filePtr == NULL ) 
+    {
+        printf( "ERROR: Could not open file\n" );
+        return 1;
+    }
     
     /* 2. Check command line arguments here. If a command line argument (for the file name) is missing, print out the following: ERROR: Missing file name and end the program */
     
@@ -37,5 +43,8 @@ int main( int argc, char *argv[] )
 	    		6.4.2 Quit needs to free the array
     
     */
+
+    fclose(filePtr);
+
     return 0;
 }

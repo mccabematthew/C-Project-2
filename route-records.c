@@ -12,23 +12,25 @@
 */
 RouteRecord* createRecords ( FILE* fileIn ) // WIP: delete all inline comments when done
 {
-    //arrayPtr = {someArray};
-
-    fileIn = fopen("data-2024.csv", "r");
+    count = 0; // total record count
+    char buffer[ 1024 ]; // Buffer to hold each line
     
-    for ( i = 0; i < ; i++ ) // reads line by line discounting header
+    fgets(buffer, sizeof(buffer), fileIn); // unrecorded first record (header)
+    
+    while (fgets(buffer, sizeof(buffer), fileIn) != NULL) // remaining line count
     {
-
+        count++;
     }
 
-    if ( file == NULL ) // empty file handling
+    RouteRecord* records = ( RouteRecord* )malloc( count * sizeof( RouteRecord ) ); // dynamic mem allocation for array after count
+    
+    if (records == NULL) // error handling
     {
-        printf( "Error!\n" );
-        return 1;
+        printf("Memory allocation failed\n");
+        return NULL;
     }
-
-    fclose(file);
-    //return arrayPtr;
+    
+    return records; // the required array ptr
 }
 
 /*
