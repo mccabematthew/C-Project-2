@@ -15,18 +15,18 @@ RouteRecord* createRecords ( FILE* fileIn ) // WIP: delete all inline comments w
     int count = 0; // total record count
     char buffer[ 1024 ]; // Buffer to hold each line
     
-    fgets(buffer, sizeof(buffer), fileIn); // unrecorded first record (header)
+    fgets( buffer, sizeof( buffer ), fileIn ); // unrecorded first record (header)
     
-    while (fgets(buffer, sizeof(buffer), fileIn) != NULL) // remaining line count
+    while ( fgets( buffer, sizeof( buffer ), fileIn ) != NULL ) // remaining line count
     {
         count++;
     }
 
     RouteRecord* records = ( RouteRecord* )malloc( count * sizeof( RouteRecord ) ); // dynamic mem allocation for array after count
     
-    if (records == NULL) // error handling
+    if ( records == NULL ) // error handling
     {
-        printf("Memory allocation failed\n");
+        printf( "Memory allocation failed\n" );
         return NULL;
     }
     
@@ -48,23 +48,25 @@ int fillRecords ( RouteRecord* r, FILE* filein )
 
 }
 
-int findAirlineRoute(RouteRecord* r, int length, const char* origin,
-    const char* destination, const char* airline, int curIdx) {
+int findAirlineRoute( RouteRecord* r, int length, const char* origin,
+    const char* destination, const char* airline, int curIdx ) 
+    {
+    if ( curIdx >= length ) 
+    {
+        return -1;
+    }
 
-if (curIdx >= length) {
-    return -1;
-}
+    if ( strcmp( r[ curIdx ].origin, origin ) == 0 &&
+    strcmp( r[ curIdx ].destination, destination ) == 0 &&
+    strcmp( r[ curIdx ].airline, airline ) == 0 ) 
+    {
+        return curIdx;
+    }
 
-if (strcmp(r[curIdx].origin, origin) == 0 &&
-strcmp(r[curIdx].destination, destination) == 0 &&
-strcmp(r[curIdx].airline, airline) == 0) {
-    return curIdx;
-}
-
-else {
-    return findAirlineRoute(r, length, origin, destination, airline, curIdx + 1);
-}
-
+    else 
+    {
+        return findAirlineRoute( r, length, origin, destination, airline, curIdx + 1 );
+    }
 }
 
 /*
@@ -97,10 +99,10 @@ void searchRecords ( RouteRecord* r, int length, const char*
 */
 void printMenu ( )
 {
-    printf("######### Airline Route Records Database MENU #########");
-    printf("1. Search by Route");
-    printf("2. Search by Origin Airport");
-    printf("3. Search by Desination Airport");
-    printf("4. Search by Airline");
-    printf("5. Quit");
+    printf( "######### Airline Route Records Database MENU #########" );
+    printf( "1. Search by Route" );
+    printf( "2. Search by Origin Airport" );
+    printf( "3. Search by Desination Airport" );
+    printf( "4. Search by Airline" );
+    printf( "5. Quit" );
 }
