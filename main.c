@@ -22,18 +22,22 @@ int main( int argc, char *argv[] )
     /* 5. Do the following to load the records into an array of RouteRecords
     	
     		5.1 Call createRecords(), which will read through the file once to find the total number of lines/records in the file. Use this count, to dynamically allocate memory for an array of RouteRecords. It returns a pointer to that array. Don't forget to rewind the file pointer.
+            createRecords( filePtr ); WIP
     		
     		5.2 Call fillRecords() to go through the CSV file again to fill in the values. It will then return the actual number of items the array has. Recall that not all records in the original CSV file will be entered into the array. Print the number of unique routes operated by different airlines: Unique routes operated by airlines: ???
     		
-    		5.3 Close the the file.
+    		5.3 Close the the file. - DONE
+            fclose( filePtr );
     */
     
     /* 6. Create an infinite loop that will do the following:
-    
-    		6.1 Call printMenu()
-    		
-    		6.2 Ask the user to input a value for the menu
-    		
+    		6.1 Call printMenu() - DONE
+    		printMenu( );
+
+    		6.2 Ask the user to input a value for the menu - WIP: figure out var for the switch statement (for below) val in scanf
+    		//printf("Enter your selection: ");
+            //scanf("%d", &someValueForMenuOptions);
+
     		6.3 Handle the case in which a non-integer value is entered
     		
     		6.4 Create a switch/case statement to handle all the menu options
@@ -43,8 +47,6 @@ int main( int argc, char *argv[] )
 	    		6.4.2 Quit needs to free the array
     
     */
-
-    fclose(filePtr);
 
     return 0;
 }

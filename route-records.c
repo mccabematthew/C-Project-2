@@ -103,8 +103,4 @@ void printMenu ( )
     printf("3. Search by Desination Airport");
     printf("4. Search by Airline");
     printf("5. Quit");
-    //printf("Enter your selection: %s", someValueForMenuOptions); WIP: figure out what index or hashmap or whatever to put here
-    
-    
-    printf("Good-bye!");
 }
