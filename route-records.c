@@ -12,7 +12,7 @@
 */
 RouteRecord* createRecords ( FILE* fileIn ) // WIP: delete all inline comments when done
 {
-    count = 0; // total record count
+    int count = 0; // total record count
     char buffer[ 1024 ]; // Buffer to hold each line
     
     fgets(buffer, sizeof(buffer), fileIn); // unrecorded first record (header)
@@ -97,5 +97,14 @@ void searchRecords ( RouteRecord* r, int length, const char*
 */
 void printMenu ( )
 {
-
+    printf("######### Airline Route Records Database MENU #########");
+    printf("1. Search by Route");
+    printf("2. Search by Origin Airport");
+    printf("3. Search by Desination Airport");
+    printf("4. Search by Airline");
+    printf("5. Quit");
+    //printf("Enter your selection: %s", someValueForMenuOptions); WIP: figure out what index or hashmap or whatever to put here
+    
+    
+    printf("Good-bye!");
 }
