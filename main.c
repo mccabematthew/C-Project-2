@@ -4,8 +4,12 @@
 
 int main( int argc, char *argv[] )
 {
-    /* 1. Declare variables here */
+    /* 1. Declare variables here -- DONE*/
     FILE *filePtr = fopen( "data-2024.csv", "r" );
+    RouteRecord *records;
+    int numRecords;
+    int menuChoice;
+    char key1[MAX_SIZE], key2[MAX_SIZE];
 
     
     /* 2. Check command line arguments here. If a command line argument (for the file name) is missing, print out the following: ERROR: Missing file name and end the program DONE*/
@@ -31,9 +35,9 @@ int main( int argc, char *argv[] )
     		5.1 Call createRecords(), which will read through the file once to find the total number of lines/records in the file. Use this count, to dynamically allocate memory for an array of RouteRecords. It returns a pointer to that array. Don't forget to rewind the file pointer.
             createRecords( filePtr ); WIP
     		
-    		5.2 Call fillRecords() to go through the CSV file again to fill in the values. It will then return the actual number of items the array has. Recall that not all records in the original CSV file will be entered into the array. Print the number of unique routes operated by different airlines: Unique routes operated by airlines: ???
+    		5.2 Call fillRecords() to go through the CSV file again to fill in the values. It will then return the actual number of items the array has. Recall that not all records in the original CSV file will be entered into the array. Print the number of unique routes operated by different airlines: Unique routes operated by airlines: ??? 
     		
-    		5.3 Close the the file.
+    		5.3 Close the the file. -- DONE
             
     */
 
@@ -41,20 +45,20 @@ int main( int argc, char *argv[] )
     
     // 5.2
 
-    fclose( filePtr ); //5.3 DONE
+    fclose( filePtr ); // 5.3
     
     /* 6. Create an infinite loop that will do the following:
     		6.1 Call printMenu() DONE
 
-    		6.2 Ask the user to input a value for the menu DONE
+    		6.2 Ask the user to input a value for the menu -- DONE
 
-    		6.3 Handle the case in which a non-integer value is entered DONE
+    		6.3 Handle the case in which a non-integer value is entered -- DONE
     		
-    		6.4 Create a switch/case statement to handle all the menu options DONE
+    		6.4 Create a switch/case statement to handle all the menu options -- DONE
     		
-	    		6.4.1 Each option requires the user to enter a search key DONE
+	    		6.4.1 Each option requires the user to enter a search key -- DONE
 	    		
-	    		6.4.2 Quit needs to free the array DONE
+	    		6.4.2 Quit needs to free the array -- DONE
     
     */
 
