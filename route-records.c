@@ -72,7 +72,7 @@ int fillRecords( RouteRecord* r, FILE* fileIn )
                   &month, origin, destination, airlineCode, &passengers ) == 5 ) 
                   {
 
-        if ( strlen( airlineCode ) == 3 )
+        if (strlen(airlineCode) != 2 && strlen(airlineCode) != 3)
             continue;
 
         int monthIndex = month - 1;
@@ -201,7 +201,7 @@ void searchRecords ( RouteRecord* r, int length, const char*
         
         if (matchFound) {
             // Print airline and route
-            printf( "%s ( %s-%s ) ", r[i].airline, r[i].origin, r[i].destination );
+            printf( "%s ( %s-%s )\n", r[i].airline, r[i].origin, r[i].destination );
             matches++;
             
             // Add passenger counts
