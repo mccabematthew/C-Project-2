@@ -24,12 +24,22 @@ RouteRecord* createRecords ( FILE* fileIn ) // WIP: delete all inline comments w
         count++;
     }
 
+    rewind( fileIn );
+
     RouteRecord* records = ( RouteRecord* )malloc( count * sizeof( RouteRecord ) ); // dynamic mem allocation for array after count
     
     if ( records == NULL ) // error handling
     {
         printf( "Memory allocation failed\n" );
         return NULL;
+    }
+
+    for ( int i = 0; i < count; i++ ) 
+    {
+        for ( int j = 0; j < 6; j++ ) 
+        {
+            records[ i ].passengerCount[ j ] = 0;
+        }
     }
     
     return records; // the required array ptr
@@ -127,7 +137,94 @@ int findAirlineRoute( RouteRecord* r, int length, const char* origin,
 void searchRecords ( RouteRecord* r, int length, const char* 
     key1, const char* key2, SearchType st )
 {
-
+    int matches = 0;
+    int totalPassengers = 0;
+    int passengersByMonth[ 6 ] = { 0 };
+    
+    // Print search type
+    switch(st) 
+    {
+        case ROUTE:
+            printf( "Searching by route...\n" );
+            break;
+        case ORIGIN:
+            printf( "Search by origin...\n" );
+            break;
+        case DESTINATION:
+            printf( "Searching by destination...\n" );
+            break;
+        case AIRLINE:
+            printf( "Search by airline...\n" );
+            break;
+    }
+    
+    // Search through records
+    for ( int i = 0; i < length; i++ ) 
+    {
+        int matchFound = 0;
+        
+        // Check if current record matches search criteria
+        switch( st ) 
+        {
+            case ROUTE:
+                if ( strcmp(r[ i ].origin, key1 ) == 0 && strcmp( r[ i ].destination, key2 ) == 0 ) 
+                {
+                    matchFound = 1;
+                }
+                break;
+            case ORIGIN:
+                if ( strcmp( r[ i ].origin, key1 ) == 0 ) 
+                {
+                    matchFound = 1;
+                }
+                break;
+            case DESTINATION:
+                if ( strcmp( r[ i ].destination, key1 ) == 0 ) 
+                {
+                    matchFound = 1;
+                }
+                break;
+            case AIRLINE:
+                if ( strcmp(r[ i ].airline, key1 ) == 0 ) 
+                {
+                    matchFound = 1;
+                }
+                break;
+        }
+        
+        if (matchFound) {
+            // Print airline and route
+            printf( "%s ( %s-%s ) ", r[i].airline, r[i].origin, r[i].destination );
+            matches++;
+            
+            // Add passenger counts
+            for ( int j = 0; j < 6; j++ ) 
+            {
+                passengersByMonth[ j ] += r[ i ].passengerCount[ j ];
+                totalPassengers += r[ i ].passengerCount[ j ];
+            }
+        }
+    }
+    
+    // Print statistics
+    printf( "\n%d matches were found.\n", matches );
+    printf( "Statistics\n" );
+    printf( "Total Passengers: %d\n", totalPassengers );
+    
+    for ( int i = 0; i < 6; i++ ) 
+    {
+        printf( "Total Passengers in Month %d: %d\n", i + 1, passengersByMonth[ i ] );
+    }
+    
+    // Calculate average passengers per month
+    if ( matches > 0 ) 
+    {
+        int averagePerMonth = totalPassengers / 6;
+        printf( "Average Passengers per Month: %d\n", averagePerMonth );
+    } else 
+    {
+        printf( "Average Passengers per Month: 0\n" );
+    }
 }
 
 /*
@@ -139,10 +236,11 @@ void searchRecords ( RouteRecord* r, int length, const char*
 */
 void printMenu ( )
 {
-    printf( "######### Airline Route Records Database MENU #########" );
-    printf( "1. Search by Route" );
-    printf( "2. Search by Origin Airport" );
-    printf( "3. Search by Desination Airport" );
-    printf( "4. Search by Airline" );
-    printf( "5. Quit" );
+    printf( "\n\n######### Airline Route Records Database MENU #########\n" );
+    printf( "1. Search by Route\n" );
+    printf( "2. Search by Origin Airport\n" );
+    printf( "3. Search by Desination Airport\n" );
+    printf( "4. Search by Airline\n" );
+    printf( "5. Quit\n" );
+    printf( "Enter your selection: " );
 }
