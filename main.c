@@ -5,7 +5,7 @@
 
 int main( int argc, char *argv[] )
 {
-    /* 1. Declare variables here -- DONE*/
+    /* 1. Declare variables here -- DONE */
     FILE *filePtr = fopen( "data-2024.csv", "r" );
     RouteRecord *records;
     int numRecords;
@@ -42,9 +42,15 @@ int main( int argc, char *argv[] )
             
     */
 
-    createRecords( filePtr );// 5.1
-    
-    fillRecords( records, filePtr ); // 5.2
+    records = createRecords(filePtr); // 5.1
+    if (records == NULL) {
+        printf("Failed to create records array\n");
+        fclose(filePtr);
+        return 1;
+    }
+
+    numRecords = fillRecords(records, filePtr); // 5.2
+    printf("Unique routes operated by airlines: %d\n", numRecords);
 
     fclose( filePtr ); // 5.3
     
