@@ -43,9 +43,9 @@ int main( int argc, char *argv[] )
             
     */
 
-    //5.1
+   createRecords(filePtr); //5.1
     
-    // 5.2
+    fillRecords(records, filePtr); // 5.2
 
     fclose( filePtr ); // 5.3
     
