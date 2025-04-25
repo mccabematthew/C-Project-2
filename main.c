@@ -22,7 +22,7 @@ int main( int argc, char *argv[] )
     
     /* 3. Attempt to open the file. Print out Opening <filename>... before you call fopen(). DONE*/
     printf( "Opening %s...\n", argv[ 1 ] );
-    filePtr = fopen( argv[1], "r" );
+    filePtr = fopen( argv[ 1 ], "r" );
     
     /* 4. Check to see if the file opens. If it does not open, print out ERROR: Could not open file and end the program. DONE */
     if ( filePtr == NULL ) 
@@ -70,12 +70,10 @@ int main( int argc, char *argv[] )
 
         if (scanf("%d", &menuChoice) != 1) // 6.2
         {
-            printf( "Invalid input. Please enter a number.\n" ); // 6.2
+            printf( "Invalid input. Please enter a number.\n" ); // 6.3
             while ( getchar() != '\n' );
             continue;
         }
-
-        // 6.3
 
         // 6.4 
         switch ( menuChoice ) 
