@@ -96,16 +96,12 @@ int main( int argc, char *argv[] )
             
         case 5: // Quit
             printf("Good-bye\n");
-            free(records); // Free memory!!! (can't wait until i don't have to do this teehee)
+            free(records); // Free memory!!! (can't wait until i don't have to do this teehee) 6.4.2
             return 0;
             
         default:
             printf("Invalid option. Please try again.\n");
     }
-
-    // 6.4.1
-
-    // 6.4.2
     
     return 0;
 }
