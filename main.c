@@ -44,63 +44,68 @@ int main( int argc, char *argv[] )
     fclose( filePtr ); //5.3 DONE
     
     /* 6. Create an infinite loop that will do the following:
-    		6.1 Call printMenu()
+    		6.1 Call printMenu() DONE
 
-    		6.2 Ask the user to input a value for the menu - WIP: figure out var for the switch statement (for below) val in scanf
-    		//printf("Enter your selection: ");
-            //scanf("%d", &someValueForMenuOptions);
+    		6.2 Ask the user to input a value for the menu DONE
 
-    		6.3 Handle the case in which a non-integer value is entered
+    		6.3 Handle the case in which a non-integer value is entered DONE
     		
-    		6.4 Create a switch/case statement to handle all the menu options
+    		6.4 Create a switch/case statement to handle all the menu options DONE
     		
-	    		6.4.1 Each option requires the user to enter a search key
+	    		6.4.1 Each option requires the user to enter a search key DONE
 	    		
-	    		6.4.2 Quit needs to free the array
+	    		6.4.2 Quit needs to free the array DONE
     
     */
 
-    printMenu( ); // 6.1
+    while ( 1 ) // infinite loop
+    {
+        printMenu( ); // 6.1 
 
-    // 6.2
+        if (scanf("%d", &menuChoice) != 1) { // 6.2
+            printf("Invalid input. Please enter a number.\n"); // 6.2
+            while (getchar() != '\n');
+            continue;
+        }
 
-    // 6.3
+        // 6.3
 
-    // 6.4 NOT DONE, We'll have to move this to ctrl+] this to the right because it will be in the while loop stated above
-    switch (menuChoice) {
-        case 1: // Search by Route
-            printf("Enter origin: ");
-            scanf("%s", key1);
-            printf("Enter destination: ");
-            scanf("%s", key2);
-            searchRecords(records, numRecords, key1, key2, ROUTE);
-            break;
-            
-        case 2: // Search by Origin
-            printf("Enter origin: ");
-            scanf("%s", key1);
-            searchRecords(records, numRecords, key1, NULL, ORIGIN);
-            break;
-            
-        case 3: // Search by Destination
-            printf("Enter destination: ");
-            scanf("%s", key1);
-            searchRecords(records, numRecords, key1, NULL, DESTINATION);
-            break;
-            
-        case 4: // Search by Airline
-            printf("Enter airline: ");
-            scanf("%s", key1);
-            searchRecords(records, numRecords, key1, NULL, AIRLINE);
-            break;
-            
-        case 5: // Quit
-            printf("Good-bye\n");
-            free(records); // Free memory!!! (can't wait until i don't have to do this teehee) 6.4.2
-            return 0;
-            
-        default:
-            printf("Invalid option. Please try again.\n");
+        // 6.4 
+        switch (menuChoice) {
+            case 1: // Search by Route
+                printf("Enter origin: ");
+                scanf("%s", key1);
+                printf("Enter destination: ");
+                scanf("%s", key2);
+                searchRecords(records, numRecords, key1, key2, ROUTE);
+                break;
+                
+            case 2: // Search by Origin
+                printf("Enter origin: ");
+                scanf("%s", key1);
+                searchRecords(records, numRecords, key1, NULL, ORIGIN);
+                break;
+                
+            case 3: // Search by Destination
+                printf("Enter destination: ");
+                scanf("%s", key1);
+                searchRecords(records, numRecords, key1, NULL, DESTINATION);
+                break;
+                
+            case 4: // Search by Airline
+                printf("Enter airline: ");
+                scanf("%s", key1);
+                searchRecords(records, numRecords, key1, NULL, AIRLINE);
+                break;
+                
+            case 5: // Quit
+                printf("Good-bye\n");
+                free(records); // Free memory!!! (can't wait until i don't have to do this teehee) 6.4.2
+                return 0;
+                
+            default:
+                printf("Invalid option. Please try again.\n");
+        }
     }
     
     return 0;
