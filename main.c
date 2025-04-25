@@ -11,7 +11,6 @@ int main( int argc, char *argv[] )
     int numRecords;
     int menuChoice;
     char key1[ MAX_SIZE ], key2[ MAX_SIZE ];
-
     
     /* 2. Check command line arguments here. If a command line argument (for the file name) is missing, print out the following: ERROR: Missing file name and end the program DONE*/
     if ( argc < 2 ) 
@@ -43,9 +42,9 @@ int main( int argc, char *argv[] )
             
     */
 
-    //5.1
+    createRecords( filePtr );// 5.1
     
-    // 5.2
+    fillRecords( records, filePtr ); // 5.2
 
     fclose( filePtr ); // 5.3
     
@@ -68,7 +67,7 @@ int main( int argc, char *argv[] )
     {
         printMenu( ); // 6.1 
 
-        if (scanf("%d", &menuChoice) != 1) // 6.2
+        if ( scanf( "%d", &menuChoice ) != 1 ) // 6.2
         {
             printf( "Invalid input. Please enter a number.\n" ); // 6.3
             while ( getchar() != '\n' );
