@@ -55,41 +55,48 @@ RouteRecord* createRecords ( FILE* fileIn ) // WIP: delete all inline comments w
         
     Returns: The amount of RouteRecords used in the array
 */
-int fillRecords(RouteRecord* r, FILE* fileIn) {
-    char origin[MAX_SIZE];
-    char destination[MAX_SIZE];
-    char airlineCode[MAX_SIZE];
+int fillRecords( RouteRecord* r, FILE* fileIn ) 
+{
+    char origin[ MAX_SIZE ];
+    char destination[ MAX_SIZE ];
+    char airlineCode[ MAX_SIZE ];
     int month, passengers;
     int routeCount = 0;
 
-    char line[100];
-    fgets(line, sizeof(line), fileIn);
+    char line[ 1024 ];
 
-    while (fscanf(fileIn, "%d,%[^,],%[^,],%[^,],%d\n",
-                  &month, origin, destination, airlineCode, &passengers) == 5) {
+    rewind(fileIn);
+    fgets( line, sizeof( line ), fileIn );
 
-        if (strlen(airlineCode) == 3)
+    while ( fscanf( fileIn, "%d,%[^,],%[^,],%[^,],%d\n",
+                  &month, origin, destination, airlineCode, &passengers ) == 5 ) 
+                  {
+
+        if ( strlen( airlineCode ) == 3 )
             continue;
 
         int monthIndex = month - 1;
 
-        if (monthIndex < 0 || monthIndex >= 6)
+        if ( monthIndex < 0 || monthIndex >= 6 )
             continue;
 
-        int index = findAirlineRoute(r, routeCount, origin, destination, airlineCode, 0);
+        int index = findAirlineRoute( r, routeCount, origin, destination, airlineCode, 0 );
 
-        if (index != -1) {
-            r[index].passengerCount[monthIndex] += passengers;
-        } else {
-            strcpy(r[routeCount].origin, origin);
-            strcpy(r[routeCount].destination, destination);
-            strcpy(r[routeCount].airline, airlineCode);
+        if ( index != -1 ) 
+        {
+            r[ index ].passengerCount[ monthIndex ] += passengers;
+        } else 
+        {
+            strcpy( r[ routeCount ].origin, origin );
+            strcpy( r[ routeCount ].destination, destination );
+            strcpy( r[ routeCount ].airline, airlineCode );
 
-            for (int i = 0; i < 6; i++) {
+            for ( int i = 0; i < 6; i++ ) 
+            {
                 r[routeCount].passengerCount[i] = 0;
             }
 
-            r[routeCount].passengerCount[monthIndex] = passengers;
+            r[ routeCount ].passengerCount[ monthIndex ] = passengers;
 
             routeCount++;
         }
