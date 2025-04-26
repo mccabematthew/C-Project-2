@@ -105,6 +105,20 @@ int fillRecords( RouteRecord* r, FILE* fileIn )
     return routeCount;
 }
 
+/*
+    Function: findAirlineRoute
+    -------------------
+    Description: Compares airline codes in order to find the appropriate route
+
+        r: Array pointer for the dynamically allocated array
+        length: Route record length
+        origin: code for the root airline
+        destination: destination airline code
+        airline: airline
+        curIdx: position in the route record
+        
+    Returns: Nothing
+*/
 int findAirlineRoute( RouteRecord* r, int length, const char* origin,
     const char* destination, const char* airline, int curIdx ) 
     {
