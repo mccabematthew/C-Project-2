@@ -72,7 +72,7 @@ int fillRecords( RouteRecord* r, FILE* fileIn )
                   &month, origin, destination, airlineCode, &passengers ) == 5 ) 
                   {
 
-        if (strlen(airlineCode) != 2 && strlen(airlineCode) != 3)
+        if (strlen(airlineCode) != 2)
             continue;
 
         int monthIndex = month - 1;
